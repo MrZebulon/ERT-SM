@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+{% include 'dependencies.html' %}
+<title>EPFL Rocket Team Stock Management - Check In</title>
+</head>
+<body>
+<div class="container">
+    <div class="row h-100 justify-content-center align-items-center mx-auto">
+        <form method="POST" action="{{ url }}">
+            <legend>Where are you putting it back ?</legend>
+            <div class="mb-3">
+                <select class="form-select" aria-label="location" name="location">
+                      <option value="dll">DLL (Stockage 3)</option>
+                      <option value="pph">PPH (eSpace)</option>
+                      <option value="makerspace">MakerSpace</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

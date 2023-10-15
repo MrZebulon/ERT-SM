@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+{% include 'dependencies.html' %}
+<title>EPFL Rocket Team Stock Management - Login</title>
+</head>
+<body>
+<div class="container">
+    <div class="row h-100 justify-content-center align-items-center mx-auto">
+        <form method="POST" action="{{ url_for('login') }}">
+            <legend>Log In</legend>
+            <div class="input-group mb-3">
+                <span for="first_name" class="input-group-text">First Name</span>
+                <input type="text" class="form-control" id="first_name" name="first_name" required>
+            </div>
+            <div class="input-group mb-3">
+                <span for="last_name" class="input-group-text">Last Name</span>
+                <input type="text" class="form-control" id="last_name" name="last_name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Log in</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
