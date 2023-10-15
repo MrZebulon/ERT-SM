@@ -1,12 +1,7 @@
-<!doctype html>
-<html>
-<head>
-{% include 'dependencies.html' %}
-<title>EPFL Rocket Team Stock Management - Login</title>
-</head>
-<body>
-<div class="container">
-    <div class="row h-100 justify-content-center align-items-center mx-auto">
+{% extends "base.html" %}
+{% block main_content %}
+<div class="container text-center">
+    <div class="row justify-content-center align-items-center mx-auto">
         <form method="POST" action="{{ url_for('login') }}">
             <legend>Log In</legend>
             <div class="input-group mb-3">
@@ -21,5 +16,4 @@
         </form>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}

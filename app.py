@@ -18,9 +18,15 @@ DATABASE = "ert-sm"
 
 STATUS_AWAY = "away"
 
+
 @app.route('/')
 def index():  # put application's code here
-    return render_template('home.html')
+    if not is_logged_in():
+        return render_template('home.html', logged_in=False)
+
+    cookie = ast.literal_eval(request.cookies.get(COOKIE))
+
+    return render_template('home.html', logged_in=True, first_name=cookie.get("first_name"), last_name=cookie.get("last_name"))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -109,6 +115,10 @@ def logout():
     res.set_cookie(COOKIE, '', expires=0)
     return res
 
+@app.route("/whereis/<size>/<num>")
+def whereis(size, num):
+    return get_status(size, num)
+
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -148,12 +158,14 @@ def is_user(first_name, last_name):
     return records[0] != 0
 
 
-def is_away(size, num):
+def get_status(size, num):
     data = (size, num)
     with app.app_context():
-        record = get_db().execute("SELECT status from boxes WHERE box_size=? AND box_num=?;", data).fetchone()
+        return get_db().execute("SELECT status from boxes WHERE box_size=? AND box_num=?;", data).fetchone()[0]
 
-    return record[0] == STATUS_AWAY
+
+def is_away(size, num):
+    return get_status(size, num) == STATUS_AWAY
 
 
 def on_checkin(size, num, first_name, last_name, status):

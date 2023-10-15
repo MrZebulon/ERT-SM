@@ -1,12 +1,12 @@
-<!doctype html>
-<html>
-<head>
-{% include 'dependencies.html' %}
-<title>EPFL Rocket Team Stock Management - Confirmation</title>
-</head>
-<body>
-
-Confirmed: Bpx {{ size }}-{{ num }}
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block head %}
+    <link href="../static/scan_confirm.css" rel="stylesheet">
+{% endblock %}
+{% block main_content %}
+<div class="container text-center">
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+          <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"></circle>
+          <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
+        </svg>
+    </div>
+{% endblock %}
